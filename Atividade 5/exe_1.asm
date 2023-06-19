@@ -6,9 +6,8 @@
 	li $s0, MATRIX_SIZE
 
 	# alocar A e B
-	
-	mul $t0, $s0, $s0 # t0 = MAX*MAX
-	mul $t0, $t0, 4 # t0 = MAX*MAX*4 (tamanho de bytes de cada matriz)
+	mul $t0, $s0, $s0 # t0 = MATRIX_SIZE * MATRIX_SIZE
+	mul $t0, $t0, 4   # t0 = MATRIX_SIZE * MATRIX_SIZE * 4 (tamanho de bytes de cada matriz)
 	
 	li $v0, 9
 	move $a0, $t0
