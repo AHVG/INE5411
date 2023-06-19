@@ -3,11 +3,11 @@
 	
 	.eqv MATRIX_SIZE 4
 
-	li $t0, MATRIX_SIZE
+	li $s6, MATRIX_SIZE
 
 	# alocar A e B
 	
-	mul $t1, $t0, $t0 # t1 = MAX*MAX
+	mul $t1, $s6, $s6 # t1 = MAX*MAX
 	mul $t1, $t1, 4 # t1 = MAX*MAX*4 (tamanho de bytes de cada matriz)
 	
 	li $v0, 9
@@ -22,13 +22,13 @@
 	# loops do código
 	li $t2, 0 # t2 = i
 for_i:
-	bge $t2, $t0, for_i_end
+	bge $t2, $s6, for_i_end
 	li $t3, 0 # t3 = j
 for_j:
-	bge $t3, $t0, for_j_end
+	bge $t3, $s6, for_j_end
 
 	# calcular offset do elemento de A (max*i + j)*4
-	mul $t4, $t2, $t0  # t4 = max*i
+	mul $t4, $t2, $s6  # t4 = max*i
 	add $t4, $t4, $t3  # t4 = max*i + j (offset no A)
 	mul $t4, $t4, 4  # t4 = 4*..
 	add $t4, $s0, $t4
@@ -37,7 +37,7 @@ for_j:
 	l.s $f0, 0($t4)  # f0 = elemento do A
 
 	# calcular offset do elemento de B (max*j + i)*4
-	mul $t5, $t3, $t0  # t5 = max*j
+	mul $t5, $t3, $s6  # t5 = max*j
 	add $t5, $t5, $t2  # t5 = max*j + i
 	mul $t5, $t5, 4  # t5 = 4*...
 	add $t5, $s1, $t5
