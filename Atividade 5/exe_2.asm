@@ -8,8 +8,8 @@
 	li $s1, BLOCK_SIZE
 
 	# alocar A e B
-	mul $t0, $s0, $s0 # t0 = MAX*MAX
-	mul $t0, $t0, 4 # t0 = MAX*MAX*4 (tamanho de bytes de cada matriz)
+	mul $t0, $s0, $s0 # t0 = MATRIX_SIZE * MATRIX_SIZE
+	mul $t0, $t0, 4   # t0 = MATRIX_SIZE * MATRIX_SIZE * 4 (tamanho de bytes de cada matriz)
 	
 	li $v0, 9
 	move $a0, $t0
@@ -23,18 +23,18 @@
 	# loops do código
 	li $t0, 0 # t0 = i = 0
 for_i:
-	bge $t0, $s0, for_i_end
-	li $t1, 0 # t1 = j = 0
+	bge $t0, $s0, for_i_end # i < matrix_size
+	li $t1, 0 				# t1 = j = 0
 for_j:
-	bge $t1, $s0, for_j_end
-	move $t2, $t0 # t2 = ii = i
+	bge $t1, $s0, for_j_end # j < matrix_size
+	move $t2, $t0 			# t2 = ii = i
 for_ii:
-	add $t4, $t1, $s1 # t4 = i+block_size
-	bge $t2, $t4, for_ii_end
-	move $t3, $t1  # t3 = jj = j
+	add $t4, $t1, $s1 		 # t4 = i+block_size
+	bge $t2, $t4, for_ii_end # ii < i + block_size
+	move $t3, $t1  			 # t3 = jj = j
 for_jj:
 	add $t5, $t1, $s1  # t5 = j+block_size
-	bge $t5, $t3, for_jj_end
+	bge $t5, $t3, for_jj_end # jj < j + block_size
 
 	# calcular offset do elemento de A (max*ii + jj)*4
 	mul $t6, $t2, $s0  # t6 = max*ii
