@@ -1,27 +1,13 @@
 .data
-	MAX_STR: .asciiz "MAX="
-	BLOCK_SIZE_STR: .asciiz "block_size="
 .text
-	# pedir o MAX
-	#la $a0, MAX_STR
-	#li $v0, 4
-	#syscall
 
-	li $v0, 5
-	syscall
-	move $t0, $v0 # t0 = MAX
+	.eqv MATRIX_SIZE 4
+	.eqv BLOCK_SIZE 4
 
-	# pedir o block_size
-	#la $a0, BLOCK_SIZE_STR
-	#li $v0, 4
-	#syscall
-
-	li $v0, 5
-	syscall
-	move $s7, $v0 # s7 = block_size
-
-	# alocar A e B
+	li $t0, MATRIX_SIZE
+	li $s7, BLOCK_SIZE
 	
+	# alocar A e B
 	mul $t1, $t0, $t0 # t1 = MAX*MAX
 	mul $t1, $t1, 4 # t1 = MAX*MAX*4 (tamanho de bytes de cada matriz)
 	
@@ -36,9 +22,9 @@
 
 	# loops do código
 	li $t2, 0 # t2 = i
-	for_i:
-		bge $t2, $t0, for_i_end
-		li $t3, 0 # t3 = j
+for_i:
+	bge $t2, $t0, for_i_end
+	li $t3, 0 # t3 = j
 for_j:
 	bge $t3, $t0, for_j_end
 	move $t9, $t2 # t9 = ii

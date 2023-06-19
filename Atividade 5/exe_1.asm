@@ -1,14 +1,9 @@
 .data
-	MAX_STR: .asciiz "MAX="
 .text
-	# pedir o MAX
-	la $a0, MAX_STR
-	li $v0, 4
-	syscall
+	
+	.eqv MATRIX_SIZE 4
 
-	li $v0, 5
-	syscall
-	move $t0, $v0 # t0 = MAX
+	li $t0, MATRIX_SIZE
 
 	# alocar A e B
 	
