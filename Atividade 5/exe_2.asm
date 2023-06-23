@@ -4,7 +4,7 @@
 .data
 .text
 
-	.eqv MATRIX_SIZE 8
+	.eqv MATRIX_SIZE 4
 	.eqv BLOCK_SIZE 4
 
 	li $s0, MATRIX_SIZE
