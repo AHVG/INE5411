@@ -1,3 +1,6 @@
+# Augusto de Hollanda Vieira Guerner (22102192)
+# Fabricio Duarte Júnior (22100615)
+
 .data
 .text
 	

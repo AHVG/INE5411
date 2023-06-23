@@ -1,8 +1,11 @@
+# Augusto de Hollanda Vieira Guerner (22102192)
+# Fabricio Duarte Júnior (22100615)
+
 .data
 .text
 
 	.eqv MATRIX_SIZE 8
-	.eqv BLOCK_SIZE 8
+	.eqv BLOCK_SIZE 4
 
 	li $s0, MATRIX_SIZE
 	li $s1, BLOCK_SIZE
